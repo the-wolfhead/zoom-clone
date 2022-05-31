@@ -7,7 +7,7 @@
     <script>
         const ROOM_ID = "<%= roomId %>"
     </script>
-    <script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.4.6/peerjs.js"></script>
 
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="script.js" defer></script>
@@ -28,5 +28,6 @@
 </head>
 <body>
     <div id ="video-grid"></div>
+    <div ><textarea name="" id="" cols="30" rows="10">localhost:3000/new<%= roomId %></textarea></div>
 </body>
 </html>
