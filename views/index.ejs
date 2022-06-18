@@ -6,18 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script src="app.js"></script>
 </head>
 <body style="background: black;">
     <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li><a href="/join" class="btn-log">Join Meeting</a></li>
+          <li><a href="#" class="btn-log" data-bs-toggle="modal" data-bs-target="#myModal">Join Meeting</a></li>
           <li><a href="/new" class="btn-log ">Start Meeting</a></li>
                             
+
         </ul>
       </nav>
+      <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Join Meeting</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" action="/join" method="post">
+            <h4>Input Meeting ID</h4>
+            <div class="form-group ">
+            <input type="text" name="ide" id="ide" class="form-control form-control-user" placeholder="meeting id" required>
+          </div>
+          <input type="hidden" name="_token" value="QmU7HxVQgR7Y6kFA9pFybCxIpewKi6WgL63Dx9vQ">
+            <input type="submit" class="btn btn-light">
+          </form>
+        </div>
+      </div>
+  
+    </div>
+  </div>
       <canvas id="sky">
         <hi>Welcome</hi>
     </canvas>

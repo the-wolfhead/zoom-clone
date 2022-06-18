@@ -33,6 +33,7 @@
     text-transform: capitalize;
     font-weight: 500;
     float: right;
+    text-decoration: none;
 }
 
 .nav-menu .btn-log {
@@ -41,7 +42,7 @@
     color: whitesmoke;
     display: flex;
     margin-top: -8px;
-    
+    text-decoration: none;
     border-radius: 4px;
     transition: all .3s;
     Float: right;
