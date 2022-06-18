@@ -7,6 +7,8 @@
     <script>
         const ROOM_ID = "<%= roomId %>"
     </script>
+        <link rel="stylesheet" href="style.css">
+
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.4.6/peerjs.js"></script>
 
     <script src="/socket.io/socket.io.js" defer></script>
@@ -29,5 +31,11 @@
 <body>
     <div id ="video-grid"></div>
     <div ><h1>Meeting Invite Link</h1><textarea name="" id="" cols="100" rows="1"><%= roomId %></textarea></div>
+
+    <div class="navbar">
+        <a href="#home" class="active">Video</a>
+        <a href="#news">Chat</a>
+        <a href="#contact">Exit</a>
+      </div>
 </body>
 </html>
