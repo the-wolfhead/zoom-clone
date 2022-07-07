@@ -5,6 +5,7 @@ const ion = require('socket.io')(serve)
 const { v4: uuidV4 } = require('uuid')
 const bodyParser = require('body-parser');
 const connection = require('./db');
+const date = require('date-and-time');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -22,7 +23,16 @@ app.get('/new',(req, res)=>{
 })
 
 app.get('/new:room', (req, res)=> {
-    res.render('room', { roomId: req.params.room})
+    var meet_code = req.params.room;
+    const now  =  new Date();
+    const value = date.format(now,'YYYY/MM/DD HH:mm:ss');
+    var entry = {
+        M_code: meet_code,
+        S_date: value
+    }
+    connection.query('INSERT INTO meeting_info SET ?', entry, function (err,result) {
+        res.render('room', { roomId: req.params.room})
+    })
 })
 
 app.post('/join', (req,res)=> {
