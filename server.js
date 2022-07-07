@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const server = require('http').Server(app)
-const io = require('socket.io')(server)
+const serve = require('http').Server(app)
+const ion = require('socket.io')(serve)
 const { v4: uuidV4 } = require('uuid')
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // for parsing application/json
@@ -27,9 +27,10 @@ app.post('/join', (req,res)=> {
     var id = req.body.ide;
     console.log(id);
     res.render('room', { roomId: id })   
-})  
+})    
 
-io.on('connection', socket => {
+ion.on('connection', socket => {
+    console.log( socket.id)
     socket.on('join-room', (roomId, userId) => {
         socket.join(roomId)
         socket.to(roomId).emit('user-connected', userId)
@@ -40,4 +41,32 @@ io.on('connection', socket => {
     }) 
 })
 
-server.listen(process.env.PORT || 3000);
+
+
+
+var socke = require('socket.io');
+
+//App setup
+
+var server = app.listen(process.env.PORT || 3000, function() {
+    console.log('listening to requests on port 4000');
+});
+
+
+
+//Socket setup
+
+var socket = socke(server)
+socket.on('connection', function(socke){
+    console.log('Made socket connection', socke.id);
+
+    socke.on('chat', function(data){
+        socket.sockets.emit('chat', data);
+    })
+
+    socke.on('typing', function(data){
+        socke.broadcast.emit('typing', data);
+    })
+});
+
+
