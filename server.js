@@ -28,7 +28,8 @@ app.get('/new:room', (req, res)=> {
     const value = date.format(now,'YYYY/MM/DD HH:mm:ss');
     var entry = {
         M_code: meet_code,
-        S_date: value
+        S_date: value,
+        M_stat: "In Progress"
     }
     connection.query('INSERT INTO meeting_info SET ?', entry, function (err,result) {
         res.render('room', { roomId: req.params.room})
@@ -39,7 +40,21 @@ app.post('/join', (req,res)=> {
     var id = req.body.ide;
     console.log(id);
     res.render('room', { roomId: id })   
-})    
+})
+
+app.get('/close', (req, res)=> {
+    var meet_code = req.params.room;
+    const now  =  new Date();
+    const value = date.format(now,'YYYY/MM/DD HH:mm:ss');
+    var entry = {
+        M_code: meet_code,
+        E_date: value,
+        M_stat: "Ended"
+    }
+    connection.query('UPDATE meeting_info SET ? where M_code='+meet_code, entry,() =>{
+        res.redirect('/');
+    })
+})
 
 ion.on('connection', socket => {
     console.log( socket.id)
