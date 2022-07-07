@@ -4,8 +4,10 @@ const serve = require('http').Server(app)
 const ion = require('socket.io')(serve)
 const { v4: uuidV4 } = require('uuid')
 const bodyParser = require('body-parser');
+const connection = require('./db');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 
 
 app.set('view engine', 'ejs')
